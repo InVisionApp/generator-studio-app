@@ -17,14 +17,15 @@
     "invision studio"
   ],
   "devDependencies": {
-    "nsp": "^2.8.0",
     "eslint": "^4.19.1",
-    "prettier": "^1.11.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-xo": "^0.20.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "generator-npm-init": "^1.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-config-xo": "^0.20.1"
+    "nsp": "^3.2.1",
+    "prettier": "^1.11.1"
   },
   "engines": {
     "npm": ">= 4.0.0"

@@ -4,11 +4,14 @@
   "description": "<%= name %>",
   "main": "src/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config ./webpack.config.js && npm run copy-package-json",
-    "copy-package-json": "cp ./package.json './bundle/'",
+    "build-install": "npm run build && npm run install-plugin",
+    "build": "npx webpack --config ./webpack.config.js && npm run copy-package-json",
+    "copy-package-json": "npx copyfiles ./package.json './bundle'",
     "githook": "npm run lint",
-    "lint-fix": "./node_modules/.bin/eslint ./src --fix",
-    "lint": "./node_modules/.bin/eslint ./src"
+    "install-plugin": "node scripts/install-plugin.js",
+    "lint-fix": "npx eslint . --fix",
+    "lint": "npx eslint .",
+    "watch": "npx watch \"npm run build-install;\" ./src --ignoreDotFiles"
   },
   "keywords": [
     "invision",
@@ -18,7 +21,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@invisionapp/studio-api": "^2.2.0",
+    "@invisionapp/studio-api": "^3.0.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
@@ -54,5 +57,9 @@
     "ghooks": {
       "pre-push": "npm run githook"
     }
+  },
+  "devDependencies": {
+    "copyfiles": "^2.0.0",
+    "fs-extra": "^7.0.0"
   }
 }
