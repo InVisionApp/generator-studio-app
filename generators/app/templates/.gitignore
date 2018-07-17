@@ -1,0 +1,16 @@
+# OS Files
+*.swp
+*~
+._*
+.DS_Store
+*.ipr
+*.iml
+*.iws
+.idea/
+.vscode/
+
+# Dev
+node_modules
+npm-debug.*
+dist
+bundle

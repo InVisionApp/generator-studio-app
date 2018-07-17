@@ -1,0 +1,58 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "description": "<%= name %>",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config ./webpack.config.js && npm run copy-package-json",
+    "copy-package-json": "cp ./package.json './bundle/'",
+    "githook": "npm run lint",
+    "lint-fix": "./node_modules/.bin/eslint ./src --fix",
+    "lint": "./node_modules/.bin/eslint ./src"
+  },
+  "keywords": [
+    "invision",
+    "studio",
+    "plugin"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@invisionapp/studio-api": "^2.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "0.28.11",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "ghooks": "2.0.4",
+    "js-beautify": "^1.7.4",
+    "lodash": "4.17.10",
+    "postcss-loader": "2.1.4",
+    "postcss-nested": "3.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "redux": "4.0.0",
+    "style-loader": "0.21.0",
+    "sweetalert": "^2.0.8",
+    "watch": "^1.0.2",
+    "webpack": "^3.10.0"
+  },
+  "engines": {
+    "node": "6.x || 7.x || 8.x",
+    "npm": "3.x || 4.x || 5.x"
+  },
+  "config": {
+    "ghooks": {
+      "pre-push": "npm run githook"
+    }
+  }
+}
