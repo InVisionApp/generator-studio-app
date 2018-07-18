@@ -7,15 +7,13 @@ const path = require('path');
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(
-      yosay(`Welcome to the ${chalk.red('Studio Plugin')} generator!`)
-    );
+    this.log(yosay(`Welcome to the ${chalk.red('Studio Plugin')} generator!`));
 
     const prompts = [
       {
         type: 'input',
         name: 'name',
-        message: 'What is your plugin\'s name?',
+        message: "What is your plugin's name?",
         default: this.appname
       }
     ];
@@ -28,27 +26,23 @@ module.exports = class extends Generator {
   writing() {
     this.destinationRoot(path.join(this.destinationRoot(), this.props.name));
 
-    this.fs.copy(this.templatePath('src'), this.destinationPath('src'));
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'),
-      { name: this.props.name }
-    );
-    this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath('README.md'),
-      { name: this.props.name }
-    );
+    [
+      '.babelrc',
+      '.eslintignore',
+      '.eslintrc',
+      '.gitignore',
+      '.nvmrc',
+      'src',
+      'webpack.config.js'
+    ].forEach(f => {
+      this.fs.copy(this.templatePath(f), this.destinationPath(f));
+    });
 
-    this.fs.copy(
-      this.templatePath('webpack.config.js'),
-      this.destinationPath('webpack.config.js')
-    );
-
-    this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
-    this.fs.copy(this.templatePath('.eslintrc'), this.destinationPath('.eslintrc'));
-    this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
-    this.fs.copy(this.templatePath('.nvmrc'), this.destinationPath('.nvmrc'));
+    // Templated files
+    const template = { name: this.props.name };
+    ['scripts', 'package.json', 'README.md'].forEach(f => {
+      this.fs.copyTpl(this.templatePath(f), this.destinationPath(f), template);
+    });
   }
 
   install() {

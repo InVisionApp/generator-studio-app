@@ -1,0 +1,7 @@
+owner:
+  active:
+    team: studio-platform
+    since: 2018-06-17
+  history:
+description: "InVision Studio Plugin Scaffolding"
+type: library
