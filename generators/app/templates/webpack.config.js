@@ -16,7 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(analytics-node|supports-color|has-flag)\/).*/,
+        exclude: /node_modules/,
         loaders: 'babel-loader',
       },
     ],
