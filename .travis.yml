@@ -4,3 +4,7 @@ node_js:
   - v8
   - v6
   - v4
+install:
+  - npm install -g codecov
+script:
+  - jest && codecov

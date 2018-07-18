@@ -39,6 +39,8 @@
     "yosay": "^2.0.1"
   },
   "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
     "testEnvironment": "node"
   },
   "scripts": {
