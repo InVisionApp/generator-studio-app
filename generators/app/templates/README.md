@@ -1,6 +1,6 @@
 # <%= name %>
 
-## Setting Up Your Environment
+## Initial Environment Set Up
 
 To install all the required dependencies locally and begin development use:
 
@@ -8,7 +8,7 @@ To install all the required dependencies locally and begin development use:
 npm install
 ```
 
-## Building and Installing the Plugin
+## Plugin Build and Install
 
 Building the plugin entails creating an application bundle. The following will create a `./bundle` directory with all required assets:
 
@@ -22,7 +22,7 @@ Then to install the plugin application bundle use:
 npm run install-plugin
 ```
 
-## Realtime Development
+## Build and Install Automation
 
 We provide a script to detect code changes during development and then automatically re-build and install them:
 
