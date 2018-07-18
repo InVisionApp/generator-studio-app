@@ -2,7 +2,7 @@
 
 # generator-studio-plugin
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Travis Build Status](https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=KosA43m1X3ikri8JEukQ&branch=master)](https://travis-ci.com/InVisionApp/generator-studio-plugin)
+[![LICENSE](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Travis Build Status](https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=g3DfmKs46qxeTx5EwNEw&branch=master)](https://travis-ci.com/InVisionApp/generator-studio-plugin)
 [![codecov](https://codecov.io/gh/InVisionApp/generator-studio-plugin/branch/master/graph/badge.svg?token=I9IGBzprlC)](https://codecov.io/gh/InVisionApp/generator-studio-plugin)
 
 > Yeoman generator for InVision Studio Plugins
