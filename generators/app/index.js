@@ -5,6 +5,33 @@ const chalk = require('chalk');
 const path = require('path');
 const yosay = require('yosay');
 
+// Because npm publish strips out .gitignore files, generate this file
+const gitignoreContent = `# OS Files
+*.swp
+*~
+._*
+.DS_Store
+*.ipr
+*.iml
+*.iws
+.idea/
+.vscode/
+
+# Build directory
+lib
+dist
+
+# Node modules
+node_modules
+
+# NPM
+npm-debug.log
+
+# TypeScript
+.tscache
+tscommand-*
+`;
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
@@ -77,12 +104,14 @@ module.exports = class extends Generator {
   writing() {
     this.destinationRoot(path.join(this.destinationRoot(), this.props.pluginName));
 
+    // Generated files
+    this.fs.write(this.destinationPath('.gitignore'), gitignoreContent);
+
     // Copied files
     [
       'src/in-editor.jsx',
       '.babelrc',
       '.eslintrc.js',
-      '.gitignore',
       '.prettierignore',
       '.prettierrc.js'
     ].forEach(f => {
