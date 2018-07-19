@@ -2,14 +2,16 @@
 
 # generator-studio-plugin
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Travis Build Status](https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=g3DfmKs46qxeTx5EwNEw&branch=master)](https://travis-ci.com/InVisionApp/generator-studio-plugin)
-[![codecov](https://codecov.io/gh/InVisionApp/generator-studio-plugin/branch/master/graph/badge.svg?token=I9IGBzprlC)](https://codecov.io/gh/InVisionApp/generator-studio-plugin)
+[![LICENSE][license-badge]](LICENSE)
+[![Travis Build Status][travis-badge]][travis]
+[![codecov][codecov-badge]][codecov]
 
 > Yeoman generator for InVision Studio Plugins
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-studio-plugin using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-studio-plugin using
+[npm][npm] (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
@@ -23,13 +25,46 @@ cd /path/to/where/you/want/to/write/your/plugins
 yo studio-plugin
 ```
 
-## Getting To Know Yeoman
+## Composability
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+> Composability is a way to combine smaller parts to make one large thing.
+> Sort of [like Voltron®][voltron]
+> — [Yeoman docs][yeoman-docs]
+
+### Install
+
+```bash
+npm install --save generator-studio-plugin
+```
+
+### Compose
+
+```js
+this.composeWith(require.resolve('generator-studio-plugin')/*, options */)
+```
+
+#### Options
+
+```js
+{
+    // supply alternative defaults
+    pluginName: 'appname-plugin',
+    description: '',
+    name: 'git-user',
+    email: 'git-email',
+}
+```
 
 ## License
 
-MIT © [InVision, Inc.](https://www.invisionapp.com/studio)
+MIT © [InVision, Inc.][invision-studio]
+
+[codecov-badge]:    https://codecov.io/gh/InVisionApp/generator-studio-plugin/branch/master/graph/badge.svg?token=I9IGBzprlC
+[codecov]:          https://codecov.io/gh/InVisionApp/generator-studio-plugin
+[invision-studio]:  https://www.invisionapp.com/studio
+[license-badge]:    https://img.shields.io/badge/license-MIT-orange.svg
+[npm]:              https://www.npmjs.com/
+[travis-badge]:     https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=g3DfmKs46qxeTx5EwNEw&branch=master
+[travis]:           https://travis-ci.com/InVisionApp/generator-studio-plugin
+[voltron]:          http://25.media.tumblr.com/tumblr_m1zllfCJV21r8gq9go11_250.gif
+[yeoman-docs]:      http://yeoman.io/authoring/composability.html
