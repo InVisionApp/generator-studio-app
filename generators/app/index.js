@@ -45,7 +45,7 @@ module.exports = class extends Generator {
         name: 'description',
         message: "What's your plugin description:",
         default:
-          this.options.description || `The ${this.appname} plugin for InViSion Studio.`,
+          this.options.description || `The ${this.appname} plugin for InVision Studio.`,
         when: this.options.description === undefined
       },
       {
