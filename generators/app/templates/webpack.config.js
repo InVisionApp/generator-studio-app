@@ -1,7 +1,7 @@
 const os = require('os');
 const path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PLUGIN_BASE = path.join(os.homedir(), '.invision-studio', 'plugins');
@@ -17,7 +17,7 @@ module.exports = (env, argv) => {
     },
 
     output: {
-      path: path.join(PLUGIN_BASE, '<%= name %>'),
+      path: path.join(PLUGIN_BASE, '<%= pluginName %>'),
       filename: '[name].js',
     },
 

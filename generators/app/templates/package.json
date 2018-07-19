@@ -1,11 +1,14 @@
 {
-  "name": "<%= name %>",
+  "name": "<%= pluginName %>",
   "version": "0.1.0",
   "main": "src/index.js",
-  "license": "MIT",
+  "license": "<%= license %>",
   "keywords": ["invision", "studio", "plugin", "<%= appname %>"],
   "description": "<%= description %>",
-  "author": { "name": "<%= author %>" },
+  "author": {
+    "name": "<%= name %>",
+    "email": "<%= email %>"
+  },
   "scripts": {
     "build": "npx webpack --config ./webpack.config.js --mode production",
     "format": "prettier \"**/*.@({t,j}s?(x)|json|md)\" --write",

@@ -5,11 +5,7 @@
     "downlevelIteration": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "listFiles": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -22,19 +18,9 @@
     "sourceMap": false,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types"
-    ],
-    "types": [
-      "node"
-    ]
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "types": ["node"]
   },
-  "exclude": [
-    "./node_modules",
-    "**/*.spec.ts"
-  ],
-  "include": [
-    "./src/**/*"
-  ]
+  "exclude": ["./node_modules", "**/*.spec.ts"],
+  "include": ["./src/**/*"]
 }
