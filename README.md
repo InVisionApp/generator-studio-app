@@ -10,8 +10,8 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-studio-plugin using
-[npm][npm] (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman][yeoman] and generator-studio-plugin using
+[npm][npm] (we assume you have pre-installed [node.js][nodejs]).
 
 ```bash
 npm install -g yo
@@ -63,8 +63,10 @@ MIT © [InVision, Inc.][invision-studio]
 [codecov]:          https://codecov.io/gh/InVisionApp/generator-studio-plugin
 [invision-studio]:  https://www.invisionapp.com/studio
 [license-badge]:    https://img.shields.io/badge/license-MIT-orange.svg
+[nodejs]:           https://nodejs.org/
 [npm]:              https://www.npmjs.com/
 [travis-badge]:     https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=g3DfmKs46qxeTx5EwNEw&branch=master
 [travis]:           https://travis-ci.com/InVisionApp/generator-studio-plugin
 [voltron]:          http://25.media.tumblr.com/tumblr_m1zllfCJV21r8gq9go11_250.gif
 [yeoman-docs]:      http://yeoman.io/authoring/composability.html
+[yeoman]:           http://yeoman.io
