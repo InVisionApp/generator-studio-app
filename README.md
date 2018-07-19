@@ -65,7 +65,7 @@ MIT © [InVision, Inc.][invision-studio]
 [license-badge]:    https://img.shields.io/badge/license-MIT-orange.svg
 [nodejs]:           https://nodejs.org/
 [npm]:              https://www.npmjs.com/
-[travis-badge]:     https://travis-ci.com/InVisionApp/generator-studio-plugin.svg?token=g3DfmKs46qxeTx5EwNEw&branch=master
+[travis-badge]:     https://travis-ci.org/InVisionApp/generator-studio-plugin.svg?branch=master
 [travis]:           https://travis-ci.com/InVisionApp/generator-studio-plugin
 [voltron]:          http://25.media.tumblr.com/tumblr_m1zllfCJV21r8gq9go11_250.gif
 [yeoman-docs]:      http://yeoman.io/authoring/composability.html
