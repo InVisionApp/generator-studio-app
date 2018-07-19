@@ -9,6 +9,10 @@
   "files": [
     "generators"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
