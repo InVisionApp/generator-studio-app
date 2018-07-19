@@ -30,7 +30,6 @@ describe('generator-studio-plugin:app', () => {
       'manifest.json',
       'package.json',
       'README.md',
-      'tsconfig.json',
       'webpack.config.js'
     ]);
     assert.fileContent('README.md', `# ${TEST_PLUGIN_NAME}`);

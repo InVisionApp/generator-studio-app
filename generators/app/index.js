@@ -84,8 +84,7 @@ module.exports = class extends Generator {
       '.eslintrc.js',
       '.gitignore',
       '.prettierignore',
-      '.prettierrc.js',
-      'tsconfig.json'
+      '.prettierrc.js'
     ].forEach(f => {
       this.fs.copy(this.templatePath(f), this.destinationPath(f));
     });
