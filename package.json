@@ -17,10 +17,10 @@
     "invision studio"
   ],
   "devDependencies": {
+    "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo": "^0.20.1",
     "eslint-plugin-prettier": "^2.6.0",
-    "eslint": "^4.19.1",
     "husky": "^0.14.3",
     "jest": "^23.4.1",
     "lint-staged": "^6.1.1",
@@ -43,10 +43,10 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublishOnly": "nsp check",
-    "pretest": "eslint .",
+    "prepublishOnly": "npx nsp check",
+    "pretest": "npx eslint .",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "npx jest"
   },
   "lint-staged": {
     "*.js": [

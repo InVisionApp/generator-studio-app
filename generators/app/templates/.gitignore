@@ -9,8 +9,16 @@
 .idea/
 .vscode/
 
-# Dev
-node_modules
-npm-debug.*
+# Build directory
+lib
 dist
-bundle
+
+# Node modules
+node_modules
+
+# NPM
+npm-debug.log
+
+# TypeScript
+.tscache
+tscommand-*

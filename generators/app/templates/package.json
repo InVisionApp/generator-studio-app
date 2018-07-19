@@ -1,0 +1,55 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": ["invision", "studio", "plugin", "<%= appname %>"],
+  "description": "<%= description %>",
+  "author": { "name": "<%= author %>" },
+  "scripts": {
+    "build": "npx webpack --config ./webpack.config.js --mode production",
+    "format": "prettier \"**/*.@({t,j}s?(x)|json|md)\" --write",
+    "lint": "npx eslint .",
+    "start": "npx webpack --config ./webpack.config.js --mode development --watch",
+    "test": "npm run lint && npx jest",
+    "tslint": "npx tslint 'src/**/*.{ts,tsx}'"
+  },
+  "engines": {
+    "node": "6.x || 7.x || 8.x || 10.x",
+    "npm": "5.x || 6.x"
+  },
+  "config": {
+    "ghooks": {
+      "pre-push": "npm run githook"
+    }
+  },
+  "devDependencies": {
+    "@invisionapp/studio-api": "^3.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "copy-webpack-plugin": "4.5.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint": "^4.12.1",
+    "fs-extra": "^7.0.0",
+    "ghooks": "2.0.4",
+    "jest": "23.4.1",
+    "prettier": "1.13.7",
+    "react-dom": "^15.6.2",
+    "react": "15.6.2",
+    "tslint": "5.11.0",
+    "typescript": "2.9.2",
+    "uglifyjs-webpack-plugin": "1.2.7",
+    "watch": "^1.0.2",
+    "webpack-cli": "3.1.0",
+    "webpack": "4.16.1"
+  }
+}

@@ -4,40 +4,40 @@ const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
 describe('generator-studio-plugin:app', () => {
-  const testAuthor = 'test-author';
-  const testDescription = 'test-description';
-  const testName = 'test-name-plugin';
+  const TEST_AUTHOR = 'test-author';
+  const TEST_DESCRIPTION = 'test-description';
+  const TEST_NAME = 'test-name-plugin';
 
   beforeAll(() => {
     return helpers.run(path.join(__dirname, '../generators/app')).withPrompts({
-      author: testAuthor,
-      description: testDescription,
-      name: testName
+      author: TEST_AUTHOR,
+      description: TEST_DESCRIPTION,
+      name: TEST_NAME
     });
   });
 
   it('creates files', () => {
-    [
+    assert.file([
+      'src/in-editor.jsx',
       '.babelrc',
-      '.eslintignore',
-      '.eslintrc',
+      '.eslintrc.js',
       '.gitignore',
+      '.prettierignore',
+      '.prettierrc.js',
       'LICENSE',
+      'manifest.json',
       'package.json',
       'README.md',
-      'scripts/install-plugin.js',
-      'src/in-editor.jsx',
+      'tsconfig.json',
       'webpack.config.js'
-    ].forEach(f => {
-      assert.file([f]);
-    });
-    assert.fileContent('README.md', `# ${testName}`);
+    ]);
+    assert.fileContent('README.md', `# ${TEST_NAME}`);
     assert.fileContent('LICENSE', `${new Date().getFullYear()}`);
-    assert.fileContent('LICENSE', testAuthor);
+    assert.fileContent('LICENSE', TEST_AUTHOR);
     assert.jsonFileContent('package.json', {
-      author: { name: testAuthor },
-      description: testDescription,
-      name: testName
+      author: { name: TEST_AUTHOR },
+      description: TEST_DESCRIPTION,
+      name: TEST_NAME
     });
   });
 });
