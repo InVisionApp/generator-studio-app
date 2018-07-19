@@ -10,11 +10,11 @@
     "email": "<%= email %>"
   },
   "scripts": {
-    "build": "npx webpack --config ./webpack.config.js --mode production",
+    "build": "webpack --config ./webpack.config.js --mode production",
     "format": "prettier \"**/*.@(js?(x)|json|md)\" --write",
-    "lint": "npx eslint .",
-    "start": "npx webpack --config ./webpack.config.js --mode development --watch",
-    "test": "npm run lint && npx jest"
+    "lint": "eslint .",
+    "start": "webpack --config ./webpack.config.js --mode development --watch",
+    "test": "npm run lint && jest"
   },
   "engines": {
     "node": "6.x || 7.x || 8.x || 10.x",

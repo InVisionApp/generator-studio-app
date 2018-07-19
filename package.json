@@ -44,10 +44,10 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublishOnly": "npx nsp check",
-    "pretest": "npx eslint .",
+    "prepublishOnly": "nsp check",
+    "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "npx jest"
+    "test": "jest"
   },
   "lint-staged": {
     "*.js": [
