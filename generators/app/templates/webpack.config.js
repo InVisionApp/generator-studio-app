@@ -1,10 +1,12 @@
 const os = require('os');
 const path = require('path');
 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PLUGIN_BASE = path.join(os.homedir(), '.invision-studio', 'plugins');
+const OUTPUT_PATH = path.join(PLUGIN_BASE, '<%= pluginName %>');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
@@ -17,7 +19,7 @@ module.exports = (env, argv) => {
     },
 
     output: {
-      path: path.join(PLUGIN_BASE, '<%= pluginName %>'),
+      path: OUTPUT_PATH,
       filename: '[name].js',
     },
 
@@ -78,6 +80,7 @@ module.exports = (env, argv) => {
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'package.json', to: 'package.json' },
       ]),
+      new CleanWebpackPlugin([OUTPUT_PATH], {allowExternal: true}),
     ],
   };
 
