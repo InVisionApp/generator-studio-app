@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "main": "src/index.js",
   "license": "<%= license %>",
-  "keywords": ["invision", "studio", "plugin", "<%= appname %>"],
+  "keywords": [
+    "invision",
+    "studio",
+    "plugin",
+    "<%= appname %>"
+  ],
   "description": "<%= description %>",
   "author": {
     "name": "<%= name %>",
@@ -41,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "eslint": "^4.12.1",
+    "file-loader": "^1.1.11",
     "ghooks": "2.0.4",
     "jest": "23.4.1",
     "prettier": "1.13.7",
