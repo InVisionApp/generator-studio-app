@@ -1,15 +1,29 @@
 const os = require('os');
 const path = require('path');
 
+const chalk = require('chalk');
+const fetch = require('node-fetch');
+
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+class AfterDonePlugin {
+  constructor(callback) {
+    this.callback = callback;
+  }
+
+  apply(compiler) {
+    compiler.plugin('done', this.callback);
+  }
+}
 
 const PLUGIN_BASE = path.join(os.homedir(), '.invision-studio', 'plugins');
 const OUTPUT_PATH = path.join(PLUGIN_BASE, '<%= pluginName %>');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
+  const DASHBOARD_PORT = env.port;
 
   const config = {
     target: 'node',
@@ -83,6 +97,24 @@ module.exports = (env, argv) => {
       new CleanWebpackPlugin([OUTPUT_PATH], {allowExternal: true}),
     ],
   };
+
+  if (DASHBOARD_PORT) {
+    reportError = (reason) => {
+      console.log(chalk.red(`\n[Dashboard Server] error: could not reload plugins: ${reason}`));
+    };
+    config.plugins.push(new AfterDonePlugin(() => {
+      console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
+      fetch(`http://localhost:${DASHBOARD_PORT}/reload-plugins`).then(res => {
+        if (!res.ok) {
+          reportError(res.text());
+        }
+      }).catch(err => {
+        if (err.code !== 'ECONNRESET') {
+          reportError(err.message);
+        }
+      });
+    }));
+  }
 
   return config;
 };
