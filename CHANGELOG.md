@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Adds version, dependency status, and download badges to the readme.
+- Plugin version in manifest.json.
+
+### Changed
+- Update to yeoman-generator v3.
 
 ## 0.3.0 - 2018-07-24
 ### Added
