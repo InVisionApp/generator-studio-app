@@ -23,7 +23,7 @@ const OUTPUT_PATH = path.join(PLUGIN_BASE, '<%= pluginName %>');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
-  const DASHBOARD_PORT = env.port;
+  const DASHBOARD_PORT = env ? env.port : undefined;
 
   const config = {
     target: 'node',
