@@ -17,7 +17,7 @@
   "scripts": {
     "build": "webpack --config ./webpack.config.js --mode production",
     "format": "prettier \"**/*.@(js?(x)|json|md)\" --write",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .js,.jsx",
     "start": "webpack --config ./webpack.config.js --mode development --watch",
     "test": "npm run lint && jest"
   },
