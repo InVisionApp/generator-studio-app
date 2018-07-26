@@ -32,6 +32,24 @@ npm-debug.log
 tscommand-*
 `;
 
+const licenses = [
+  { name: 'Apache 2.0', value: 'Apache-2.0' },
+  { name: 'MIT', value: 'MIT' },
+  { name: 'Mozilla Public License 2.0', value: 'MPL-2.0' },
+  { name: 'BSD 2-Clause (FreeBSD) License', value: 'BSD-2-Clause-FreeBSD' },
+  { name: 'BSD 3-Clause (NewBSD) License', value: 'BSD-3-Clause' },
+  { name: 'Internet Systems Consortium (ISC) License', value: 'ISC' },
+  { name: 'GNU AGPL 3.0', value: 'AGPL-3.0' },
+  { name: 'GNU GPL 3.0', value: 'GPL-3.0' },
+  { name: 'GNU LGPL 3.0', value: 'LGPL-3.0' },
+  { name: 'Unlicense', value: 'unlicense' },
+  { name: 'No License (Copyrighted)', value: 'UNLICENSED' }
+];
+
+function supportedLicense(license) {
+  return licenses.find(x => x.value === license) !== undefined;
+}
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
@@ -53,6 +71,16 @@ module.exports = class extends Generator {
     this.option('email', {
       type: String,
       desc: 'Email of the plugin writer',
+      required: false
+    });
+    this.option('license', {
+      type: String,
+      desc: 'License for this plugin',
+      required: false
+    });
+    this.option('defaultLicense', {
+      type: String,
+      desc: 'Default license for this plugin',
       required: false
     });
   }
@@ -88,24 +116,37 @@ module.exports = class extends Generator {
         message: "What's your email:",
         default: this.options.email || this.user.git.email(),
         when: this.options.email === undefined
+      },
+      {
+        type: 'list',
+        name: 'license',
+        message: 'Which license do you want to use?',
+        default: this.options.defaultLicense || 'MIT',
+        when: !this.options.license || !supportedLicense(this.options.license),
+        choices: licenses
       }
     ];
     return this.prompt(prompts).then(props => {
       this.props = props;
-      this.composeWith(require.resolve('generator-license'), {
-        defaultLicense: 'MIT',
-        email: this.props.email,
-        website: null,
-        name: this.props.name
-      });
     });
   }
 
   writing() {
     this.destinationRoot(path.join(this.destinationRoot(), this.props.pluginName));
 
-    // Generated files
+    // .gitignore
     this.fs.write(this.destinationPath('.gitignore'), gitignoreContent);
+
+    // LICENSE
+    const filename = path.join('licenses', this.props.license + '.txt');
+    let author = this.props.name.trim();
+    if (this.props.email) {
+      author += ' <' + this.props.email.trim() + '>';
+    }
+    this.fs.copyTpl(this.templatePath(filename), this.destinationPath('LICENSE'), {
+      year: new Date().getFullYear(),
+      author: author
+    });
 
     // Copied files
     [
@@ -122,6 +163,11 @@ module.exports = class extends Generator {
     const template = {
       appname: this.appname,
       description: this.props.description,
+      displayName: this.props.pluginName
+        .substring(this.props.pluginName.indexOf('/') + 1)
+        .split('-')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' '),
       email: this.props.email,
       license: this.props.license,
       name: this.props.name,
@@ -140,3 +186,5 @@ module.exports = class extends Generator {
     });
   }
 };
+
+module.exports.supportedLicense = supportedLicense;
