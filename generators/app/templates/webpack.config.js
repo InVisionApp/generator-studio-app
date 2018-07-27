@@ -92,7 +92,6 @@ module.exports = (env, argv) => {
     plugins: [
       new CopyWebpackPlugin([
         { from: 'manifest.json', to: 'manifest.json' },
-        { from: 'package.json', to: 'package.json' },
       ]),
       new CleanWebpackPlugin([OUTPUT_PATH], {allowExternal: true}),
     ],

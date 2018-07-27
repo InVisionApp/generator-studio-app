@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Expanded manifest.json support.
+
 ### Changed
 - Changed the lint script, so it also lints .jsx files
+- No longer moves over package.json file to bundle.
 
 ## 0.3.1 - 2018-07-26
 ### Changed

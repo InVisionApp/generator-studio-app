@@ -1,4 +1,12 @@
 {
   "name": "<%= pluginName %>",
-  "version": "0.1.0"
+  "displayName": "<%= displayName %>",
+  "description": "<%= description %>",
+  "license": "<%= license %>",
+  "version": "0.1.0",
+  "manifestVersion": "0.1.0",
+  "author": {
+    "name": "<%= name %>",
+    "email": "<%= email %>"
+  }
 }
