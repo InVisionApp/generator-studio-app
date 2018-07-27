@@ -23,5 +23,12 @@ module.exports = {
       'warn',
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
+    'import/no-extraneous-dependencies': [
+      [
+        'error', {
+          devDependencies: true,
+        }
+      ]
+    ]
   },
 };

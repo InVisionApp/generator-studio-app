@@ -16,7 +16,7 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const text = this.state.text;
+    const { text } = this.state;
     return (<FlexBox padding="small" width="400px">
       <Button onClick={this.onClick} text={text} />
     </FlexBox>);
