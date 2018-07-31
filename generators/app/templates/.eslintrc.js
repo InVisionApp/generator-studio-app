@@ -14,21 +14,13 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: { jsx: true },
   },
   rules: {
     'react/jsx-filename-extension': [
       'warn',
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'import/no-extraneous-dependencies': [
-      [
-        'error', {
-          devDependencies: true,
-        }
-      ]
-    ]
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };

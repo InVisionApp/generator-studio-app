@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Changed the lint script, so it also lints .jsx files
 - No longer moves over package.json file to bundle.
+- Ran prettier formatting and fixed some lint issues in webpack config script.
+- Scripts `build:development` and `build:production`.
+
+### Removed
+- Unused npm dependency: watch.
 
 ## 0.3.1 - 2018-07-26
 ### Changed

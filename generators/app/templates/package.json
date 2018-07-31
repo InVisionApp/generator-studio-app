@@ -15,10 +15,12 @@
     "email": "<%= email %>"
   },
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --mode production",
+    "build:development": "webpack --config ./webpack.config.js --mode development",
+    "build:production": "webpack --config ./webpack.config.js --mode production",
+    "build": "npm run build:production",
     "format": "prettier \"**/*.@(js?(x)|json|md)\" --write",
     "lint": "eslint . --ext .js,.jsx",
-    "start": "webpack --config ./webpack.config.js --mode development --watch",
+    "start": "npm run build:development -- --watch",
     "test": "npm run lint && jest"
   },
   "engines": {
@@ -56,7 +58,6 @@
     "react-dom": "^15.6.2",
     "react": "15.6.2",
     "uglifyjs-webpack-plugin": "1.2.7",
-    "watch": "^1.0.2",
     "webpack-cli": "3.1.0",
     "webpack": "4.16.1"
   }

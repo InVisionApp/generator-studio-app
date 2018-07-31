@@ -90,29 +90,37 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
-      new CopyWebpackPlugin([
-        { from: 'manifest.json', to: 'manifest.json' },
-      ]),
-      new CleanWebpackPlugin([OUTPUT_PATH], {allowExternal: true}),
+      new CopyWebpackPlugin([{ from: 'manifest.json', to: 'manifest.json' }]),
+      new CleanWebpackPlugin([OUTPUT_PATH], { allowExternal: true }),
     ],
   };
 
   if (DASHBOARD_PORT) {
-    reportError = (reason) => {
-      console.log(chalk.red(`\n[Dashboard Server] error: could not reload plugins: ${reason}`));
+    const reportError = reason => {
+      // eslint-disable-next-line no-console
+      console.log(
+        chalk.red(
+          `\n[Dashboard Server] error: could not reload plugins: ${reason}`
+        )
+      );
     };
-    config.plugins.push(new AfterDonePlugin(() => {
-      console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
-      fetch(`http://localhost:${DASHBOARD_PORT}/reload-plugins`).then(res => {
-        if (!res.ok) {
-          reportError(res.text());
-        }
-      }).catch(err => {
-        if (err.code !== 'ECONNRESET') {
-          reportError(err.message);
-        }
-      });
-    }));
+    config.plugins.push(
+      new AfterDonePlugin(() => {
+        // eslint-disable-next-line no-console
+        console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
+        fetch(`http://localhost:${DASHBOARD_PORT}/reload-plugins`)
+          .then(res => {
+            if (!res.ok) {
+              reportError(res.text());
+            }
+          })
+          .catch(err => {
+            if (err.code !== 'ECONNRESET') {
+              reportError(err.message);
+            }
+          });
+      })
+    );
   }
 
   return config;
