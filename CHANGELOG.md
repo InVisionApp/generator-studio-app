@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## 0.3.3 - 2018-07-31
 ### Added
 - Expanded manifest.json support.
 
@@ -18,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Unused npm dependency: watch.
 
-## 0.3.1 - 2018-07-26
+## 0.3.2 - 2018-07-26
 ### Changed
 - Fixed a bug when trying to build plugins without providing an env.
 
