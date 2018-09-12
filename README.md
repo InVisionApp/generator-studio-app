@@ -16,17 +16,15 @@
 First, install [Yeoman][yeoman] and generator-studio-plugin using
 [npm][npm] (we assume you have pre-installed [node.js][nodejs]).
 
-```bash
-npm install -g yo
-npm install -g generator-studio-plugin
-```
+**$** `npm install -g yo`
+
+**$** `npm install -g generator-studio-plugin`
 
 Then generate your new plugin:
 
-```bash
-cd /path/to/where/you/want/to/write/your/plugins
-yo studio-plugin
-```
+**$** `cd /path/to/where/you/want/to/write/your/plugins`
+
+Run **$** `yo`, and select the `Studio Plugin` option in the 'Run a generator' list.
 
 ## Composability
 
@@ -35,10 +33,7 @@ yo studio-plugin
 > — [Yeoman docs][yeoman-docs]
 
 ### Install
-
-```bash
-npm install --save generator-studio-plugin
-```
+**$** `npm install --save generator-studio-plugin`
 
 ### Compose
 
