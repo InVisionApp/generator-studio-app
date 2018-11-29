@@ -154,7 +154,8 @@ module.exports = class extends Generator {
       '.babelrc',
       '.eslintrc.js',
       '.prettierignore',
-      '.prettierrc.js'
+      '.prettierrc.js',
+      '.studioignore'
     ].forEach(f => {
       this.fs.copy(this.templatePath(f), this.destinationPath(f));
     });

@@ -2,9 +2,10 @@
   "name": "<%= pluginName %>",
   "displayName": "<%= displayName %>",
   "description": "<%= description %>",
-  "license": "<%= license %>",
+  "entry": "dist/in-editor.js",
+  "licenses": ["<%= license %>"],
   "version": "0.1.0",
-  "manifestVersion": "0.1.0",
+  "manifestVersion": "0.2.0",
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>"
