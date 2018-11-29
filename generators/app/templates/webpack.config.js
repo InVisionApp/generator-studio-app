@@ -19,7 +19,7 @@ class AfterDonePlugin {
 }
 
 const STUDIO_PLUGIN_DIR = path.join(os.homedir(), '.invision-studio', 'plugins');
-const DIST_DIR = path.join('.', 'dist');
+const DIST_DIR = path.resolve('.', 'dist');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
