@@ -17,7 +17,7 @@ class AfterDonePlugin {
   }
 }
 
-const OUTPUT_PATH = path.join('.', 'dist');
+const OUTPUT_PATH = path.join(process.cwd(), 'dist');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
