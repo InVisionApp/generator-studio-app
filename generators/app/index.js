@@ -2,7 +2,9 @@
 
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
+const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const yosay = require('yosay');
 
 // Because npm publish strips out .gitignore files, generate this file
@@ -31,6 +33,8 @@ npm-debug.log
 .tscache
 tscommand-*
 `;
+
+const STUDIO_PLUGINS_DIR = path.join(os.homedir(), '.invision-studio', 'plugins');
 
 const licenses = [
   { name: 'Apache 2.0', value: 'Apache-2.0' },
@@ -185,6 +189,19 @@ module.exports = class extends Generator {
       bower: false,
       yarn: false
     });
+  }
+
+  symlinkToStudio() {
+    const createdPath = path.join(process.cwd(), this.props.pluginName);
+    const symlinkPath = path.join(STUDIO_PLUGINS_DIR, this.props.pluginName);
+    if (fs.existsSync(symlinkPath)) {
+      fs.unlinkSync(symlinkPath);
+    }
+    const message = `\n${chalk.green(
+      '   create symbolic link'
+    )} ${symlinkPath} -> ${createdPath}`;
+    console.log(message);
+    fs.symlinkSync(createdPath, symlinkPath);
   }
 };
 

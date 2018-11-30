@@ -5,7 +5,6 @@ const chalk = require('chalk');
 const fetch = require('node-fetch');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 class AfterDonePlugin {
@@ -18,14 +17,11 @@ class AfterDonePlugin {
   }
 }
 
-const STUDIO_PLUGIN_DIR = path.join(os.homedir(), '.invision-studio', 'plugins');
-const DIST_DIR = path.resolve('.', 'dist');
+const OUTPUT_PATH = path.join('.', 'dist');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
   const DASHBOARD_PORT = env ? env.port : undefined;
-
-  const OUTPUT_PATH = IS_PROD ? DIST_DIR : path.join(STUDIO_PLUGIN_DIR, '<%= pluginName %>');
 
   const config = {
     target: 'node',
@@ -92,7 +88,6 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
-      new CopyWebpackPlugin([{ from: 'manifest.json', to: 'manifest.json' }]),
       new CleanWebpackPlugin([OUTPUT_PATH], { allowExternal: true }),
     ],
   };
