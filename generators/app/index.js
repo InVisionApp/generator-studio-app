@@ -192,9 +192,20 @@ module.exports = class extends Generator {
   }
 
   symlinkToStudio() {
+    if (typeof jest !== 'undefined') {
+      return; // Don't create symlink for tests
+    }
     const createdPath = path.join(process.cwd(), this.props.pluginName);
     const symlinkPath = path.join(STUDIO_PLUGINS_DIR, this.props.pluginName);
-    if (fs.existsSync(symlinkPath)) {
+    let pathLstat = null;
+    try {
+      pathLstat = fs.lstatSync(symlinkPath);
+    } catch (e) {
+      // Can't use existSync because that will depend on the directory
+      // pointed to by symlink existing.  We only care if the sym link
+      // exists in the plugin directory.
+    }
+    if (pathLstat) {
       fs.unlinkSync(symlinkPath);
     }
     const message = `\n${chalk.green(
