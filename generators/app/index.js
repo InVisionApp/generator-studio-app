@@ -2,9 +2,7 @@
 
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
-const fs = require('fs');
 const path = require('path');
-const os = require('os');
 const yosay = require('yosay');
 
 // Because npm publish strips out .gitignore files, generate this file
@@ -33,8 +31,6 @@ npm-debug.log
 .tscache
 tscommand-*
 `;
-
-const STUDIO_PLUGINS_DIR = path.join(os.homedir(), '.invision-studio', 'plugins');
 
 const licenses = [
   { name: 'Apache 2.0', value: 'Apache-2.0' },
@@ -189,30 +185,6 @@ module.exports = class extends Generator {
       bower: false,
       yarn: false
     });
-  }
-
-  symlinkToStudio() {
-    if (typeof jest !== 'undefined') {
-      return; // Don't create symlink for tests
-    }
-    const createdPath = path.join(process.cwd(), this.props.pluginName);
-    const symlinkPath = path.join(STUDIO_PLUGINS_DIR, this.props.pluginName);
-    let pathLstat = null;
-    try {
-      pathLstat = fs.lstatSync(symlinkPath);
-    } catch (e) {
-      // Can't use existSync because that will depend on the directory
-      // pointed to by symlink existing.  We only care if the sym link
-      // exists in the plugin directory.
-    }
-    if (pathLstat) {
-      fs.unlinkSync(symlinkPath);
-    }
-    const message = `\n${chalk.green(
-      '   create symbolic link'
-    )} ${symlinkPath} -> ${createdPath}`;
-    console.log(message);
-    fs.symlinkSync(createdPath, symlinkPath);
   }
 };
 
