@@ -37,7 +37,7 @@ describe('generator-studio-plugin:app', () => {
 
   it('creates files', () => {
     assert.file([
-      'src/in-editor.jsx',
+      'src/index.jsx',
       '.babelrc',
       '.eslintrc.js',
       '.gitignore',

@@ -82,7 +82,7 @@ class AfterDonePlugin {
   }
 }
 
-const OUTPUT_PATH = path.join(process.cwd(), 'dist');
+const OUTPUT_PATH = path.join(process.cwd(), 'lib');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
@@ -91,7 +91,7 @@ module.exports = (env, argv) => {
     target: 'node',
 
     entry: {
-      'in-editor': './src/in-editor.jsx',
+      'index': './src/index.jsx',
     },
 
     output: {
