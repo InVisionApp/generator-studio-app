@@ -9,12 +9,12 @@ const TEST_DESCRIPTION = 'test description';
 const TEST_EMAIL = 'test@example.com';
 const TEST_LICENSE = 'MIT';
 const TEST_NAME = 'Test Name';
-const TEST_PLUGIN_NAME = 'test-org/test-plugin-name';
+const TEST_PLUGIN_NAME = 'test-plugin-name';
 
 const TEST_PROMPTS = {
   description: TEST_DESCRIPTION,
   email: TEST_EMAIL,
-  license: TEST_LICENSE,
+  licenses: [TEST_LICENSE],
   name: TEST_NAME,
   pluginName: TEST_PLUGIN_NAME
 };
@@ -37,12 +37,13 @@ describe('generator-studio-plugin:app', () => {
 
   it('creates files', () => {
     assert.file([
-      'src/in-editor.jsx',
+      'src/index.jsx',
       '.babelrc',
       '.eslintrc.js',
       '.gitignore',
       '.prettierignore',
       '.prettierrc.js',
+      '.studioignore',
       'LICENSE',
       'manifest.json',
       'package.json',
@@ -62,7 +63,7 @@ describe('generator-studio-plugin:app', () => {
       author: { name: TEST_NAME, email: TEST_EMAIL },
       description: TEST_DESCRIPTION,
       displayName: TEST_PLUGIN_DISPLAY_NAME,
-      license: TEST_LICENSE,
+      licenses: [TEST_LICENSE],
       name: TEST_PLUGIN_NAME
     });
   });

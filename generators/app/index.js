@@ -19,7 +19,6 @@ const gitignoreContent = `# OS Files
 
 # Build directory
 lib
-dist
 
 # Node modules
 node_modules
@@ -150,11 +149,12 @@ module.exports = class extends Generator {
 
     // Copied files
     [
-      'src/in-editor.jsx',
+      'src/index.jsx',
       '.babelrc',
       '.eslintrc.js',
       '.prettierignore',
-      '.prettierrc.js'
+      '.prettierrc.js',
+      '.studioignore'
     ].forEach(f => {
       this.fs.copy(this.templatePath(f), this.destinationPath(f));
     });

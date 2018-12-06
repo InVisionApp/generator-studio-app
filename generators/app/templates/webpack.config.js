@@ -1,35 +1,96 @@
 const os = require('os');
+const fs = require('fs');
 const path = require('path');
 
 const chalk = require('chalk');
 const fetch = require('node-fetch');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const manifest = require('./manifest.json');
+
+const reportError = reason => {
+  // eslint-disable-next-line no-console
+  console.log(chalk.red(`\n${reason}`));
+};
+
+const symlinkToStudio = () => {
+  const pluginDevPath = process.cwd();
+  const symlinkPath = path.join(
+    os.homedir(),
+    '.invision-studio',
+    'plugins',
+    manifest.name
+  );
+
+  let realPath = null;
+  try {
+    realPath = fs.realpathSync(symlinkPath);
+  } catch (e) {
+    // Can't use existSync because that will depend on the directory
+    // pointed to by symlink existing.  We only care if the sym link
+    // exists in the plugin directory.
+  }
+  if (!realPath || realPath !== pluginDevPath) {
+    const message = `\n${chalk.green(
+      'creating symbolic link'
+    )} ${symlinkPath} -> ${pluginDevPath}`;
+    console.log(message);
+    fs.symlinkSync(pluginDevPath, symlinkPath);
+  }
+};
+
+const reloadStudioPlugins = (env) => {
+  const dashboardPort = env ? env.port : undefined;
+  if (!dashboardPort) {
+    reportError(
+      '`port` environment variable is not set.  Skipping plugin reload. ' +
+      'Reload plugins manually from the Apps menu in InVision Studio to see changes.\n'
+    );
+    return;
+  }
+  // eslint-disable-next-line no-console
+  console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
+  fetch(`http://localhost:${dashboardPort}/reload-plugins`)
+    .then(res => {
+      if (!res.ok) {
+        reportError(res.text());
+      }
+    })
+    .catch(err => {
+      if (err.code !== 'ECONNRESET') {
+        reportError(err.message);
+      }
+    });
+};
+
+const afterDoneCallback = (env) => {
+  symlinkToStudio();
+  reloadStudioPlugins(env);
+};
+
 class AfterDonePlugin {
-  constructor(callback) {
+  constructor(env, callback) {
     this.callback = callback;
+    this.env = env;
   }
 
   apply(compiler) {
-    compiler.plugin('done', this.callback);
+    compiler.plugin('done', () => this.callback(this.env));
   }
 }
 
-const PLUGIN_BASE = path.join(os.homedir(), '.invision-studio', 'plugins');
-const OUTPUT_PATH = path.join(PLUGIN_BASE, '<%= pluginName %>');
+const OUTPUT_PATH = path.join(process.cwd(), 'lib');
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
-  const DASHBOARD_PORT = env ? env.port : undefined;
 
   const config = {
     target: 'node',
 
     entry: {
-      'in-editor': './src/in-editor.jsx',
+      'index': './src/index.jsx',
     },
 
     output: {
@@ -90,38 +151,10 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
-      new CopyWebpackPlugin([{ from: 'manifest.json', to: 'manifest.json' }]),
       new CleanWebpackPlugin([OUTPUT_PATH], { allowExternal: true }),
+      new AfterDonePlugin(env, afterDoneCallback),
     ],
   };
-
-  if (DASHBOARD_PORT) {
-    const reportError = reason => {
-      // eslint-disable-next-line no-console
-      console.log(
-        chalk.red(
-          `\n[Dashboard Server] error: could not reload plugins: ${reason}`
-        )
-      );
-    };
-    config.plugins.push(
-      new AfterDonePlugin(() => {
-        // eslint-disable-next-line no-console
-        console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
-        fetch(`http://localhost:${DASHBOARD_PORT}/reload-plugins`)
-          .then(res => {
-            if (!res.ok) {
-              reportError(res.text());
-            }
-          })
-          .catch(err => {
-            if (err.code !== 'ECONNRESET') {
-              reportError(err.message);
-            }
-          });
-      })
-    );
-  }
 
   return config;
 };
