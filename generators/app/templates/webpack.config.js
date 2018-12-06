@@ -111,7 +111,7 @@ module.exports = (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                OUTPUT_PATH: 'assets',
+                outputPath: 'assets',
                 publicPath: '/',
               },
             },
