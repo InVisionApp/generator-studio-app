@@ -12,11 +12,7 @@ const manifest = require('./manifest.json');
 
 const reportError = reason => {
   // eslint-disable-next-line no-console
-  console.log(
-    chalk.red(
-      `\n[Dashboard Server] error: could not reload plugins: ${reason}`
-    )
-  );
+  console.log(chalk.red(`\n${reason}`));
 };
 
 const symlinkToStudio = () => {
@@ -48,7 +44,10 @@ const symlinkToStudio = () => {
 const reloadStudioPlugins = (env) => {
   const dashboardPort = env ? env.port : undefined;
   if (!dashboardPort) {
-    reportError('`port` environment variable is not set. Skipping.');
+    reportError(
+      '`port` environment variable is not set.  Skipping plugin reload. ' +
+      'Reload plugins manually from the Apps menu in InVision Studio to see changes.\n'
+    );
     return;
   }
   // eslint-disable-next-line no-console
