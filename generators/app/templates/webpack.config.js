@@ -96,6 +96,7 @@ module.exports = (env, argv) => {
     output: {
       path: OUTPUT_PATH,
       filename: '[name].js',
+      libraryTarget: 'commonjs',
     },
 
     module: {
