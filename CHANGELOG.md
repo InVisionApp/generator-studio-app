@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.4.0 - 2018-12-12
+### Changed
+- Updated the manifest spec.
+- Symlink into install directory instead of building into it.
+- Target CommonJS in build.
+
 ## 0.3.3 - 2018-07-31
 ### Added
 - Expanded manifest.json support.

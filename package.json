@@ -1,6 +1,6 @@
 {
   "name": "generator-studio-plugin",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Yeoman generator for InVision Studio Plugins",
   "homepage": "https://www.invisionapp.com/studio",
   "author": {
