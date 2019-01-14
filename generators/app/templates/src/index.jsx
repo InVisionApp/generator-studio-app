@@ -25,8 +25,8 @@ class App extends React.PureComponent {
   }
 }
 
-StudioApi.core.onWillShow((payload) => {
-  payload.render(
+StudioApi.core.onWillShow((event) => {
+  event.render(
     <Modal>
       <App />
     </Modal>
