@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 0.4.1 - 2019-01-15
+### Changed
+- Updated the template to use new render method.
+
 ## 0.4.0 - 2018-12-12
 ### Changed
 - Updated the manifest spec.
