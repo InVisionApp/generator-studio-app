@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Updated pre-publish to use the new npm audit over the discontinued nsp check.
+
+### Added
+- Documentation for publishing this package in PUBLISHING.md.
 
 ## 0.4.1 - 2019-01-15
 ### Changed
