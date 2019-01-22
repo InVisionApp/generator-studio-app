@@ -26,13 +26,19 @@ plugin.
 
 #### Automatically reloading plugins
 
-Optionally you may set `env.port` to force rebuilds to trigger automatic plugin
-reloading. Note that _all_ plugins are reloaded at once for a given InVision
-Studio editor window. The port value can be found in the Developer Dashboard.
+In addition to rebuilding and reinstalling the plugin, the development mode will also automatically reload plugins
+in Studio itself. Note that _all_ plugins are reloaded at once for a given InVision
+Studio editor window.
+
+To setup automatic reloading of plugins, you need to define the `STUDIO_DEV_SERVER_PORT` environment variable with an
+available port number. This will start Studio's development server (which enables plugin reloading), whenever Studio is running.
+Add the following line on your `~/.bash_profile` or other initialization script (to use 9101 as port number):
 
 ```
-npm run start -- --env.port=<your developer dashboard port>
+export STUDIO_DEV_SERVER_PORT=9101
 ```
+
+Studio will need to be restarted to pick up the environment variable.
 
 ### Production Mode
 

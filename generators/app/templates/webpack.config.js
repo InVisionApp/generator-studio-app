@@ -41,25 +41,28 @@ const symlinkToStudio = () => {
   }
 };
 
-const reloadStudioPlugins = (env) => {
-  const dashboardPort = env ? env.port : undefined;
+const reloadStudioPlugins = () => {
+  const dashboardPort = process.env.STUDIO_DEV_SERVER_PORT;
+
   if (!dashboardPort) {
     reportError(
-      '`port` environment variable is not set.  Skipping plugin reload. ' +
+      '`STUDIO_DEV_SERVER_PORT` environment variable is not set. Skipping plugin reload. ' +
       'Reload plugins manually from the Apps menu in InVision Studio to see changes.\n'
     );
     return;
   }
   // eslint-disable-next-line no-console
   console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
-  fetch(`http://localhost:${dashboardPort}/reload-plugins`)
+  fetch(`http://localhost:${dashboardPort}/reload`)
     .then(res => {
       if (!res.ok) {
         reportError(res.text());
       }
     })
     .catch(err => {
-      if (err.code !== 'ECONNRESET') {
+      if (err.code === 'ECONNREFUSED') {
+        reportError('Could not reload Studio: make sure STUDIO_DEV_SERVER_PORT is set and restart Studio.');
+      } else if (err.code !== 'ECONNRESET') {
         reportError(err.message);
       }
     });
