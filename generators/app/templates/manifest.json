@@ -9,5 +9,6 @@
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>"
-  }
+  },
+  "dockIcon": "default"
 }
