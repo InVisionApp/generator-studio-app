@@ -10,15 +10,23 @@
           "version": "0.4.1",
           "description": "Yeoman generator for InVision Studio Plugins",
           [...]
-3. Commit these changes in a commit with a message like `"Prepare for v0.4.1."`, for example.
-4. Tag the release using the format `v${semver}`. For example: `v0.4.1`.
+3. Run `npm audit --audit-level high` now and then resolve any vulnerabilities found.
+   **You will NOT be able to publish if there are any unresolved vulnerabilities!**
+4. Commit any changes in a commit on `master` with a message like `"Prepare for v0.4.1."`,
+   for example. Then push them to the remote.
+
+        $ git checkout master
+        $ git add -A
+        $ git commit -m "Prepare for v0.4.1."
+        $ git push
+5. Tag the release using the format `v${semver}`. For example: `v0.4.1`.
 
         $ git tag v0.4.1
-4. Push the commit _and tags_ to the remote:
+6. Push the new tag to the remote:
 
-        $ git push --tags
-5. Use `npm publish` to publish the package:
+        $ git push --no-verify --tags
+7. Use `npm publish` to publish the package:
 
         $ npm publish
-6. Check that the package has been published by taking a look at
+8. Check that the package has been published by taking a look at
    [our npmjs registry page](https://www.npmjs.com/package/generator-studio-plugin).
