@@ -1,4 +1,4 @@
-<img align="right" src="images/studio.png">
+<img align="right" width="256" height="256" src="https://user-images.githubusercontent.com/1903876/54630167-7699ef80-4a36-11e9-9dfb-37eecc5ae69d.png">
 
 # generator-studio-plugin
 
