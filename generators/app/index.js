@@ -18,7 +18,7 @@ const gitignoreContent = `# OS Files
 .vscode/
 
 # Build directory
-lib
+dist
 
 # Node modules
 node_modules

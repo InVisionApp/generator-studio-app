@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Updates license date.
+- Added support for a number of source and image extensions.
+- Force install symlink on build.
+- Properly build full dist directory.
+- Added documentation for build output.
 - Updated the publishing steps for more clarity and detail.
 - Updated the logo.
 

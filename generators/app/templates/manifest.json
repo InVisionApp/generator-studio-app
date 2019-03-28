@@ -2,7 +2,7 @@
   "name": "<%= pluginName %>",
   "displayName": "<%= displayName %>",
   "description": "<%= description %>",
-  "entry": "lib/index.js",
+  "entry": "index.js",
   "licenses": ["<%= license %>"],
   "version": "0.1.0",
   "manifestVersion": "0.2.0",

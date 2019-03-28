@@ -12,7 +12,17 @@ npm install
 
 ## Building and developing your plugin
 
-There are two scripts available that will bundle and install your plugin.
+There are two scripts available that will bundle and install your plugin:
+`start` and `build`, described in detail below.
+
+### Build Output
+
+Either build script will generate the following files.
+
+| Output | Description                                                                                |
+| ------ | ------------------------------------------------------------------------------------------ |
+| `dist` | Your plugin distribution, including your application bundle, manifest, assets, etc...      |
+| `~/.invision-studio/plugins/<%= pluginName %>` | Installation of your plugin via symlink to `dist`. |
 
 ### Development Mode
 
@@ -26,19 +36,21 @@ plugin.
 
 #### Automatically reloading plugins
 
-In addition to rebuilding and reinstalling the plugin, the development mode will also automatically reload plugins
-in Studio itself. Note that _all_ plugins are reloaded at once for a given InVision
-Studio editor window.
+In addition to rebuilding and reinstalling the plugin, the development mode will
+also automatically reload plugins in Studio itself. Note that _all_ plugins are
+reloaded at once for a given InVision Studio editor window.
 
-To setup automatic reloading of plugins, you need to define the `STUDIO_DEV_SERVER_PORT` environment variable with an
-available port number. This will start Studio's development server (which enables plugin reloading), whenever Studio is running.
-Add the following line on your `~/.bash_profile` or other initialization script (to use 9101 as port number):
+To setup automatic reloading of plugins, you need to define the
+`STUDIO_DEV_SERVER_PORT` environment variable with an available port number.
+This will start Studio's development server, which enables plugin reloading,
+whenever Studio is running. For example the following line could be added to
+one of your initialization scripts to use 9101 as port number:
 
 ```
 export STUDIO_DEV_SERVER_PORT=9101
 ```
 
-Studio will need to be restarted to pick up the environment variable.
+> Note: Studio may need to be restarted to pick up the environment variable.
 
 ### Production Mode
 
