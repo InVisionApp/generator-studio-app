@@ -1,5 +1,5 @@
 {
-  "name": "<%= pluginName %>",
+  "name": "<%= appName %>",
   "displayName": "<%= displayName %>",
   "description": "<%= description %>",
   "entry": "index.js",

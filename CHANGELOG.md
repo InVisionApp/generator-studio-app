@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Rename all cases of "Studio Plugin" to "Studio App".
 - Updates license date.
 - Added support for a number of source and image extensions.
 - Force install symlink on build.

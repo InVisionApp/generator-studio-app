@@ -52,54 +52,54 @@ function supportedLicense(license) {
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    this.option('pluginName', {
+    this.option('appName', {
       type: String,
-      desc: 'Name of the plugin',
+      desc: 'Name of the app',
       required: false
     });
     this.option('description', {
       type: String,
-      desc: 'Description of the plugin',
+      desc: 'Description of the app',
       required: false
     });
     this.option('name', {
       type: String,
-      desc: 'Name of the plugin writer',
+      desc: 'Name of the app writer',
       required: false
     });
     this.option('email', {
       type: String,
-      desc: 'Email of the plugin writer',
+      desc: 'Email of the app writer',
       required: false
     });
     this.option('license', {
       type: String,
-      desc: 'License for this plugin',
+      desc: 'License for this app',
       required: false
     });
     this.option('defaultLicense', {
       type: String,
-      desc: 'Default license for this plugin',
+      desc: 'Default license for this app',
       required: false
     });
   }
 
   prompting() {
-    this.log(yosay(`Welcome to the ${chalk.red('Studio Plugin')} generator!`));
+    this.log(yosay(`Welcome to the ${chalk.red('Studio App')} generator!`));
     const prompts = [
       {
         type: 'input',
-        name: 'pluginName',
-        message: "What's your plugin named:",
-        default: this.options.pluginName || `${this.appname}-plugin`,
-        when: this.options.pluginName === undefined
+        name: 'appName',
+        message: "What's your app's name:",
+        default: this.options.appName || `${this.appname}-app`,
+        when: this.options.appName === undefined
       },
       {
         type: 'input',
         name: 'description',
-        message: "What's your plugin description:",
+        message: "What's your app's description:",
         default:
-          this.options.description || `The ${this.appname} plugin for InVision Studio.`,
+          this.options.description || `The ${this.appname} app for InVision Studio.`,
         when: this.options.description === undefined
       },
       {
@@ -131,7 +131,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.destinationRoot(path.join(this.destinationRoot(), this.props.pluginName));
+    this.destinationRoot(path.join(this.destinationRoot(), this.props.appName));
 
     // .gitignore
     this.fs.write(this.destinationPath('.gitignore'), gitignoreContent);
@@ -163,15 +163,15 @@ module.exports = class extends Generator {
     const template = {
       appname: this.appname,
       description: this.props.description,
-      displayName: this.props.pluginName
-        .substring(this.props.pluginName.indexOf('/') + 1)
+      displayName: this.props.appName
+        .substring(this.props.appName.indexOf('/') + 1)
         .split('-')
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' '),
       email: this.props.email,
       license: this.props.license,
       name: this.props.name,
-      pluginName: this.props.pluginName
+      appName: this.props.appName
     };
     ['manifest.json', 'package.json', 'README.md', 'webpack.config.js'].forEach(f => {
       this.fs.copyTpl(this.templatePath(f), this.destinationPath(f), template);

@@ -1,12 +1,12 @@
 {
-  "name": "<%= pluginName %>",
+  "name": "<%= appName %>",
   "version": "0.1.0",
   "main": "src/index.js",
   "license": "<%= license %>",
   "keywords": [
     "invision",
     "studio",
-    "plugin",
+    "app",
     "<%= appname %>"
   ],
   "description": "<%= description %>",

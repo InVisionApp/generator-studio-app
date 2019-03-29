@@ -1,7 +1,7 @@
 {
-  "name": "generator-studio-plugin",
+  "name": "generator-studio-app",
   "version": "0.4.2",
-  "description": "Yeoman generator for InVision Studio Plugins",
+  "description": "Yeoman generator for InVision Studio Apps",
   "homepage": "https://www.invisionapp.com/studio",
   "author": {
     "name": "InVision, Inc."
@@ -87,7 +87,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/InVisionApp/generator-studio-plugin"
+    "url": "https://github.com/InVisionApp/generator-studio-app"
   },
   "license": "MIT"
 }

@@ -1,4 +1,4 @@
-# <%= pluginName %>
+# <%= appName %>
 
 > <%= description %>
 
@@ -10,9 +10,9 @@ To install all the required dependencies locally and begin development use:
 npm install
 ```
 
-## Building and developing your plugin
+## Building and developing your app
 
-There are two scripts available that will bundle and install your plugin:
+There are two scripts available that will bundle and install your app:
 `start` and `build`, described in detail below.
 
 ### Build Output
@@ -21,8 +21,8 @@ Either build script will generate the following files.
 
 | Output | Description                                                                                |
 | ------ | ------------------------------------------------------------------------------------------ |
-| `dist` | Your plugin distribution, including your application bundle, manifest, assets, etc...      |
-| `~/.invision-studio/plugins/<%= pluginName %>` | Installation of your plugin via symlink to `dist`. |
+| `dist` | Your app distribution, including your application bundle, manifest, assets, etc...      |
+| `~/.invision-studio/apps/<%= appName %>` | Installation of your app via symlink to `dist`. |
 
 ### Development Mode
 
@@ -30,19 +30,19 @@ Either build script will generate the following files.
 npm run start
 ```
 
-This will build and install your plugin in _development_ mode. Whenever you make
+This will build and install your app in _development_ mode. Whenever you make
 changes to your source files, it will automatically rebuild and reinstall your
-plugin.
+app.
 
-#### Automatically reloading plugins
+#### Automatically reloading apps
 
-In addition to rebuilding and reinstalling the plugin, the development mode will
-also automatically reload plugins in Studio itself. Note that _all_ plugins are
+In addition to rebuilding and reinstalling the app, the development mode will
+also automatically reload apps in Studio itself. Note that _all_ apps are
 reloaded at once for a given InVision Studio editor window.
 
-To setup automatic reloading of plugins, you need to define the
+To setup automatic reloading of apps, you need to define the
 `STUDIO_DEV_SERVER_PORT` environment variable with an available port number.
-This will start Studio's development server, which enables plugin reloading,
+This will start Studio's development server, which enables app reloading,
 whenever Studio is running. For example the following line could be added to
 one of your initialization scripts to use 9101 as port number:
 
@@ -58,6 +58,6 @@ export STUDIO_DEV_SERVER_PORT=9101
 npm run build
 ```
 
-This builds and installs your plugin in _production_ mode. This bundle is
+This builds and installs your app in _production_ mode. This bundle is
 minified to reduce file size. Changes made to your source will **NOT** be
 automatically rebuilt.
