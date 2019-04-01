@@ -18,7 +18,7 @@ const gitignoreContent = `# OS Files
 .vscode/
 
 # Build directory
-lib
+dist
 
 # Node modules
 node_modules
@@ -52,55 +52,72 @@ function supportedLicense(license) {
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    this.option('pluginName', {
+    this.option('appId', {
       type: String,
-      desc: 'Name of the plugin',
+      desc: 'ID of the app in the app store',
       required: false
     });
     this.option('description', {
       type: String,
-      desc: 'Description of the plugin',
+      desc: 'Description of the app',
+      required: false
+    });
+    this.option('tagline', {
+      type: String,
+      desc: 'Tagline for the app',
       required: false
     });
     this.option('name', {
       type: String,
-      desc: 'Name of the plugin writer',
+      desc: 'Name of the app writer',
       required: false
     });
     this.option('email', {
       type: String,
-      desc: 'Email of the plugin writer',
+      desc: 'Email of the app writer',
+      required: false
+    });
+    this.option('homepage', {
+      type: String,
+      desc: 'Homepage of the app',
       required: false
     });
     this.option('license', {
       type: String,
-      desc: 'License for this plugin',
+      desc: 'License for this app',
       required: false
     });
     this.option('defaultLicense', {
       type: String,
-      desc: 'Default license for this plugin',
+      desc: 'Default license for this app',
       required: false
     });
   }
 
   prompting() {
-    this.log(yosay(`Welcome to the ${chalk.red('Studio Plugin')} generator!`));
+    this.log(yosay(`Welcome to the ${chalk.red('Studio App')} generator!`));
     const prompts = [
       {
         type: 'input',
-        name: 'pluginName',
-        message: "What's your plugin named:",
-        default: this.options.pluginName || `${this.appname}-plugin`,
-        when: this.options.pluginName === undefined
+        name: 'appId',
+        message: "What's your app's name:",
+        default: this.options.appId || `${this.appname}-app`,
+        when: this.options.appId === undefined
       },
       {
         type: 'input',
         name: 'description',
-        message: "What's your plugin description:",
+        message: "What's your app's description:",
         default:
-          this.options.description || `The ${this.appname} plugin for InVision Studio.`,
+          this.options.description || `The ${this.appname} app for InVision Studio.`,
         when: this.options.description === undefined
+      },
+      {
+        type: 'input',
+        name: 'tagline',
+        message: "What's your app's tagline:",
+        default: this.options.tagline || `Studio ${this.appname} app`,
+        when: this.options.tagline === undefined
       },
       {
         type: 'input',
@@ -117,6 +134,13 @@ module.exports = class extends Generator {
         when: this.options.email === undefined
       },
       {
+        type: 'input',
+        name: 'homepage',
+        message: "What's a good homepage for your app:",
+        default: this.options.homepage || 'https://www.invisionapp.com/studio',
+        when: this.options.homepage === undefined
+      },
+      {
         type: 'list',
         name: 'license',
         message: 'Which license do you want to use?',
@@ -131,7 +155,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.destinationRoot(path.join(this.destinationRoot(), this.props.pluginName));
+    this.destinationRoot(path.join(this.destinationRoot(), this.props.appId));
 
     // .gitignore
     this.fs.write(this.destinationPath('.gitignore'), gitignoreContent);
@@ -149,6 +173,7 @@ module.exports = class extends Generator {
 
     // Copied files
     [
+      'assets/icon.png',
       'src/index.jsx',
       '.babelrc',
       '.eslintrc.js',
@@ -161,17 +186,19 @@ module.exports = class extends Generator {
 
     // Templated files
     const template = {
+      appId: this.props.appId,
       appname: this.appname,
       description: this.props.description,
-      displayName: this.props.pluginName
-        .substring(this.props.pluginName.indexOf('/') + 1)
+      displayName: this.props.appId
+        .substring(this.props.appId.indexOf('/') + 1)
         .split('-')
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' '),
       email: this.props.email,
+      homepage: this.props.homepage,
       license: this.props.license,
       name: this.props.name,
-      pluginName: this.props.pluginName
+      tagline: this.props.tagline
     };
     ['manifest.json', 'package.json', 'README.md', 'webpack.config.js'].forEach(f => {
       this.fs.copyTpl(this.templatePath(f), this.destinationPath(f), template);

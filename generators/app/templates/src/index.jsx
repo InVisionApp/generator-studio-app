@@ -1,6 +1,11 @@
-import StudioApi from '@invisionapp/studio-api';
-import { Button, FlexBox, Modal } from '@invisionapp/studio-api/components';
 import React from 'react';
+
+import studio from '@invisionapp/studio-api';
+import {
+  Button,
+  FlexBox,
+  FloatingWindow,
+} from '@invisionapp/studio-api/components';
 
 let count = 0;
 
@@ -25,10 +30,6 @@ class App extends React.PureComponent {
   }
 }
 
-StudioApi.core.onWillShow((event) => {
-  event.render(
-    <Modal>
-      <App />
-    </Modal>
-  );
+studio.core.onWillShow((event) => {
+  event.render(<FloatingWindow><App /></FloatingWindow>);
 });

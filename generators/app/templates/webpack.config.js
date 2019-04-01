@@ -4,73 +4,80 @@ const path = require('path');
 
 const chalk = require('chalk');
 const fetch = require('node-fetch');
+const mkdirp = require('mkdirp');
+const rimraf = require('rimraf');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const manifest = require('./manifest.json');
+const MANIFEST = require('./manifest.json');
 
-const reportError = reason => {
-  // eslint-disable-next-line no-console
-  console.log(chalk.red(`\n${reason}`));
+const OUTPUT_PATH = path.join(process.cwd(), 'dist');
+
+function reportError(reason) {
+  console.log(chalk.red(`\n${reason}`)); // eslint-disable-line no-console
 };
 
-const symlinkToStudio = () => {
-  const pluginDevPath = process.cwd();
-  const symlinkPath = path.join(
-    os.homedir(),
-    '.invision-studio',
-    'plugins',
-    manifest.name
-  );
-
-  let realPath = null;
+function installToStudio() {
+  // ensure the apps installation base directory exists
+  const base = path.join(os.homedir(), '.invision-studio', 'apps');
   try {
-    realPath = fs.realpathSync(symlinkPath);
+    mkdirp.sync(base);
   } catch (e) {
-    // Can't use existSync because that will depend on the directory
-    // pointed to by symlink existing.  We only care if the sym link
-    // exists in the plugin directory.
+    reportError(e);
+    return;
   }
-  if (!realPath || realPath !== pluginDevPath) {
-    const message = `\n${chalk.green(
-      'creating symbolic link'
-    )} ${symlinkPath} -> ${pluginDevPath}`;
-    console.log(message);
-    fs.symlinkSync(pluginDevPath, symlinkPath);
-  }
-};
 
-const reloadStudioPlugins = () => {
+// TODO: Symlinks work on linux/mac, but we need do something else for Windows
+const dest = path.join(base, MANIFEST.name);
+  try {
+    const stats = fs.lstatSync(dest);
+    if (stats.isDirectory()) {
+      rimraf.sync(dest);
+    } else if (stats.isSymbolicLink()) {
+      fs.unlinkSync(dest);
+    }
+  } catch(e) {
+    if (e.code !== 'ENOENT') {
+      reportError(e);
+      return;
+    }
+  }
+  const message = `\n${chalk.green('creating symbolic link')} ${dest} -> ${OUTPUT_PATH}`;
+  console.log(message); // eslint-disable-line no-console
+  fs.symlinkSync(OUTPUT_PATH, dest);
+}
+
+function reloadStudioApps() {
   const dashboardPort = process.env.STUDIO_DEV_SERVER_PORT;
-
   if (!dashboardPort) {
     reportError(
-      '`STUDIO_DEV_SERVER_PORT` environment variable is not set. Skipping plugin reload. ' +
-      'Reload plugins manually from the Apps menu in InVision Studio to see changes.\n'
+      '`STUDIO_DEV_SERVER_PORT` environment variable is not set. Skipping app reload.\n' +
+      'Reload apps manually from the Apps menu in InVision Studio to see changes.\n'
     );
     return;
   }
-  // eslint-disable-next-line no-console
-  console.log(chalk.blue(`\n[Dashboard Server] reloading plugins...\n`));
-  fetch(`http://localhost:${dashboardPort}/reload`)
-    .then(res => {
-      if (!res.ok) {
-        reportError(res.text());
-      }
-    })
-    .catch(err => {
-      if (err.code === 'ECONNREFUSED') {
-        reportError('Could not reload Studio: make sure STUDIO_DEV_SERVER_PORT is set and restart Studio.');
-      } else if (err.code !== 'ECONNRESET') {
-        reportError(err.message);
-      }
-    });
+  console.log( // eslint-disable-line no-console
+    chalk.blue(`\n[Dashboard Server] reloading apps...\n`),
+  );
+
+  fetch(`http://localhost:${dashboardPort}/reload`).then(res => {
+    if (!res.ok) {
+      reportError(res.text());
+    }
+  }).catch(err => {
+    if (err.code === 'ECONNREFUSED') {
+      reportError('Could not reload Studio Apps: please ensure STUDIO_DEV_SERVER_PORT is set.');
+    } else if (err.code !== 'ECONNRESET') {
+      reportError(err.message);
+    }
+  });
 };
 
-const afterDoneCallback = (env) => {
-  symlinkToStudio();
-  reloadStudioPlugins(env);
+function afterDoneCallback(env) {
+  installToStudio();
+  reloadStudioApps(env);
 };
 
 class AfterDonePlugin {
@@ -84,7 +91,20 @@ class AfterDonePlugin {
   }
 }
 
-const OUTPUT_PATH = path.join(process.cwd(), 'lib');
+function generateCopyPlugin() {
+  const cfg = [];
+  ['assets', 'LICENSE'].forEach((from) => {
+    const f = path.join(process.cwd(), from);
+    if (fs.existsSync(f)) {
+      const to = fs.lstatSync(f).isDirectory() ?
+        path.join(OUTPUT_PATH, from) :
+        OUTPUT_PATH;
+      cfg.push({ from, to, force: true });
+    }
+  });
+  cfg.push({ from: 'manifest.json', to: OUTPUT_PATH, force: true });
+  return new CopyPlugin(cfg);
+}
 
 module.exports = (env, argv) => {
   const IS_PROD = argv && argv.mode !== 'development';
@@ -105,12 +125,12 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(t|j)sx?$/,
           exclude: /node_modules/,
           use: [{ loader: 'babel-loader' }],
         },
         {
-          test: /\.(gif|jpe?g|png)$/,
+          test: /\.(gif|jpe?g|png|svg)$/,
           use: [
             {
               loader: 'file-loader',
@@ -125,7 +145,10 @@ module.exports = (env, argv) => {
     },
 
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx'],
+      // test directory isn't included in bundle,
+      // but the linter config looks here for module resolution queues
+      alias: { test: path.resolve(__dirname, 'test') },
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
 
@@ -156,6 +179,7 @@ module.exports = (env, argv) => {
 
     plugins: [
       new CleanWebpackPlugin([OUTPUT_PATH], { allowExternal: true }),
+      generateCopyPlugin(),
       new AfterDonePlugin(env, afterDoneCallback),
     ],
   };

@@ -6,9 +6,9 @@
 2. Update the `package.json` file to indicate the new version. For example:
 
         {
-          "name": "generator-studio-plugin",
+          "name": "generator-studio-app",
           "version": "0.4.1",
-          "description": "Yeoman generator for InVision Studio Plugins",
+          "description": "Yeoman generator for InVision Studio Apps",
           [...]
 3. Run `npm audit --audit-level high` now and then resolve any vulnerabilities found.
    **You will NOT be able to publish if there are any unresolved vulnerabilities!**
@@ -29,4 +29,4 @@
 
         $ npm publish
 8. Check that the package has been published by taking a look at
-   [our npmjs registry page](https://www.npmjs.com/package/generator-studio-plugin).
+   [our npmjs registry page](https://www.npmjs.com/package/generator-studio-app).

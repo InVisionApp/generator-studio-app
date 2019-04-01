@@ -6,7 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Tagname and homepage inputs.
+- Documentation for uploading the app to the app store.
+- Example icon image.
+- Readme badges.
+
 ### Changed
+- Updates to templates for index.jsx, manifest.json, and README.md.
+- Rename all cases of "Studio Plugin" to "Studio App".
+- Updates license date.
+- Added support for a number of source and image extensions.
+- Force install symlink on build.
+- Properly build full dist directory.
+- Added documentation for build output.
 - Updated the publishing steps for more clarity and detail.
 - Updated the logo.
 
