@@ -52,14 +52,19 @@ function supportedLicense(license) {
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    this.option('appName', {
+    this.option('appId', {
       type: String,
-      desc: 'Name of the app',
+      desc: 'ID of the app in the app store',
       required: false
     });
     this.option('description', {
       type: String,
       desc: 'Description of the app',
+      required: false
+    });
+    this.option('tagline', {
+      type: String,
+      desc: 'Tagline for the app',
       required: false
     });
     this.option('name', {
@@ -70,6 +75,11 @@ module.exports = class extends Generator {
     this.option('email', {
       type: String,
       desc: 'Email of the app writer',
+      required: false
+    });
+    this.option('homepage', {
+      type: String,
+      desc: 'Homepage of the app',
       required: false
     });
     this.option('license', {
@@ -89,10 +99,10 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: 'input',
-        name: 'appName',
+        name: 'appId',
         message: "What's your app's name:",
-        default: this.options.appName || `${this.appname}-app`,
-        when: this.options.appName === undefined
+        default: this.options.appId || `${this.appname}-app`,
+        when: this.options.appId === undefined
       },
       {
         type: 'input',
@@ -101,6 +111,13 @@ module.exports = class extends Generator {
         default:
           this.options.description || `The ${this.appname} app for InVision Studio.`,
         when: this.options.description === undefined
+      },
+      {
+        type: 'input',
+        name: 'tagline',
+        message: "What's your app's tagline:",
+        default: this.options.tagline || `Studio ${this.appname} app`,
+        when: this.options.tagline === undefined
       },
       {
         type: 'input',
@@ -117,6 +134,13 @@ module.exports = class extends Generator {
         when: this.options.email === undefined
       },
       {
+        type: 'input',
+        name: 'homepage',
+        message: "What's a good homepage for your app:",
+        default: this.options.homepage || 'https://www.invisionapp.com/studio',
+        when: this.options.homepage === undefined
+      },
+      {
         type: 'list',
         name: 'license',
         message: 'Which license do you want to use?',
@@ -131,7 +155,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.destinationRoot(path.join(this.destinationRoot(), this.props.appName));
+    this.destinationRoot(path.join(this.destinationRoot(), this.props.appId));
 
     // .gitignore
     this.fs.write(this.destinationPath('.gitignore'), gitignoreContent);
@@ -149,6 +173,7 @@ module.exports = class extends Generator {
 
     // Copied files
     [
+      'assets/icon.png',
       'src/index.jsx',
       '.babelrc',
       '.eslintrc.js',
@@ -161,17 +186,19 @@ module.exports = class extends Generator {
 
     // Templated files
     const template = {
+      appId: this.props.appId,
       appname: this.appname,
       description: this.props.description,
-      displayName: this.props.appName
-        .substring(this.props.appName.indexOf('/') + 1)
+      displayName: this.props.appId
+        .substring(this.props.appId.indexOf('/') + 1)
         .split('-')
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' '),
       email: this.props.email,
+      homepage: this.props.homepage,
       license: this.props.license,
       name: this.props.name,
-      appName: this.props.appName
+      tagline: this.props.tagline
     };
     ['manifest.json', 'package.json', 'README.md', 'webpack.config.js'].forEach(f => {
       this.fs.copyTpl(this.templatePath(f), this.destinationPath(f), template);

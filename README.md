@@ -46,10 +46,10 @@ this.composeWith(require.resolve('generator-studio-app')/*, options */)
 ```js
 {
     // supply alternative defaults
-    appName: 'my-appname',
-    description: '',
-    name: 'git-user',
-    email: 'git-email',
+    appId: 'my-app',
+    description: 'My description',
+    name: 'My user',
+    email: 'my@email.tld',
 }
 ```
 

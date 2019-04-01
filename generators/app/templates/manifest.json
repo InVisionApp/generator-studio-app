@@ -1,14 +1,16 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= appId %>",
+  "version": "0.1.0",
   "displayName": "<%= displayName %>",
   "description": "<%= description %>",
-  "entry": "index.js",
-  "licenses": ["<%= license %>"],
-  "version": "0.1.0",
-  "manifestVersion": "0.2.0",
+  "tagline": "<%= tagline %>",
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>"
   },
-  "dockIcon": "default"
+  "homepage": "<%= homepage %>",
+  "icon": "assets/icon.png",
+  "dockIcon": "default",
+  "licenses": ["<%= license %>"],
+  "manifestVersion": "0.2.0"
 }

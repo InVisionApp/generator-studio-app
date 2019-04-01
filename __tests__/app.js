@@ -9,14 +9,14 @@ const TEST_DESCRIPTION = 'test description';
 const TEST_EMAIL = 'test@example.com';
 const TEST_LICENSE = 'MIT';
 const TEST_NAME = 'Test Name';
-const TEST_APP_NAME = 'test-app-name';
+const TEST_APP_ID = 'test-name-app';
 
 const TEST_PROMPTS = {
   description: TEST_DESCRIPTION,
   email: TEST_EMAIL,
   licenses: [TEST_LICENSE],
   name: TEST_NAME,
-  appName: TEST_APP_NAME
+  appId: TEST_APP_ID
 };
 
 describe('generator-studio-app:supportedLicense', () => {
@@ -29,7 +29,7 @@ describe('generator-studio-app:supportedLicense', () => {
 });
 
 describe('generator-studio-app:app', () => {
-  const TEST_APP_DISPLAY_NAME = 'Test App Name';
+  const TEST_APP_DISPLAY_NAME = 'Test Name App';
 
   beforeAll(() => {
     return helpers.run(TEST_GENERATOR).withPrompts(TEST_PROMPTS);
@@ -50,21 +50,21 @@ describe('generator-studio-app:app', () => {
       'README.md',
       'webpack.config.js'
     ]);
-    assert.fileContent('README.md', `# ${TEST_APP_NAME}`);
+    assert.fileContent('README.md', `# ${TEST_APP_ID}`);
     assert.fileContent('LICENSE', `${new Date().getFullYear()}`);
     assert.fileContent('LICENSE', TEST_NAME);
     assert.jsonFileContent('package.json', {
       author: { name: TEST_NAME, email: TEST_EMAIL },
       description: TEST_DESCRIPTION,
       license: TEST_LICENSE,
-      name: TEST_APP_NAME
+      name: TEST_APP_ID
     });
     assert.jsonFileContent('manifest.json', {
       author: { name: TEST_NAME, email: TEST_EMAIL },
       description: TEST_DESCRIPTION,
       displayName: TEST_APP_DISPLAY_NAME,
       licenses: [TEST_LICENSE],
-      name: TEST_APP_NAME
+      name: TEST_APP_ID
     });
   });
 });
