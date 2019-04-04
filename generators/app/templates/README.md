@@ -28,7 +28,7 @@ Either build script will generate the following files.
 | Output | Description |
 | ------ | ----------- |
 | `dist` | Your app distribution, including your application bundle, manifest, assets, etc... |
-| `~/.invision-studio/apps/<%= appId %>` | Installation of your app via symlink to `dist`. |
+| `~/.invision-studio/plugins/<%= appId %>` | Installation of your app via symlink to `dist`. |
 
 ### Development mode
 

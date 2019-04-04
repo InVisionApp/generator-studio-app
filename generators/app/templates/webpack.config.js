@@ -20,8 +20,8 @@ function reportError(reason) {
 };
 
 function installToStudio() {
-  // ensure the apps installation base directory exists
-  const base = path.join(os.homedir(), '.invision-studio', 'apps');
+  // ensure the installation base directory exists
+  const base = path.join(os.homedir(), '.invision-studio', 'plugins');
   try {
     mkdirp.sync(base);
   } catch (e) {
