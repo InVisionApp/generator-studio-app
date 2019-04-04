@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Readme badges.
 
 ### Changed
+- Replaced deprecated style properties.
 - Updates to templates for index.jsx, manifest.json, and README.md.
 - Rename all cases of "Studio Plugin" to "Studio App".
 - Updates license date.
