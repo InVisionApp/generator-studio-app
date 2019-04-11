@@ -13,11 +13,16 @@
 
 <!-- toc -->
 * [🗒 Description](#-description)
+* [🚀 Getting Started Tutorial](#-getting-started-tutorial)
 <!-- tocstop -->
 
 ## 🗒 Description
 
 This is a generator for making Studio apps using Node.js. This framework was built using Yeoman.
+
+# 🚀 Getting Started Tutorial
+
+The [Getting Started Tutorial](https://github.com/InVisionApp/developer-portal/tree/master/studio/generator/introduction.md) is a step-by-step guide to introduce you to the Studio App Generator. If you have not developed apps for Studio before, this tutorial is a great place to get started.
 
 ## Installation
 
