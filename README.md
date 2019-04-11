@@ -14,6 +14,7 @@
 <!-- toc -->
 * [🗒 Description](#-description)
 * [🚀 Getting Started Tutorial](#-getting-started-tutorial)
+* [📌 Requirements](#-requirements)
 <!-- tocstop -->
 
 ## 🗒 Description
@@ -23,6 +24,10 @@ This is a generator for making Studio apps using Node.js. This framework was bui
 # 🚀 Getting Started Tutorial
 
 The [Getting Started Tutorial](https://github.com/InVisionApp/developer-portal/tree/master/studio/generator/introduction.md) is a step-by-step guide to introduce you to the Studio App Generator. If you have not developed apps for Studio before, this tutorial is a great place to get started.
+
+# 📌 Requirements
+
+Only Node.js 10+ and `yeoman-generator` 3+ is supported. Node.js 10 will reach end-of-life April 2021. After that point, we will continue to support the current LTS version of Node.js.
 
 ## Installation
 
