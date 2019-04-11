@@ -14,7 +14,9 @@
 <!-- toc -->
 * [🗒 Description](#-description)
 * [🚀 Getting Started Tutorial](#-getting-started-tutorial)
+* [✨ Features](#-features)
 * [📌 Requirements](#-requirements)
+* [🏗 Usage](#-usage)
 <!-- tocstop -->
 
 ## 🗒 Description
@@ -29,31 +31,18 @@ The [Getting Started Tutorial](https://github.com/InVisionApp/developer-portal/t
 
 Only Node.js 10+ and `yeoman-generator` 3+ is supported. Node.js 10 will reach end-of-life April 2021. After that point, we will continue to support the current LTS version of Node.js.
 
-## Installation
+## ✨ Features
 
-First, install [Yeoman][yeoman] and generator-studio-app using
-[npm][npm] (we assume you have pre-installed [node.js][nodejs]).
-
-**$** `npm install -g yo`
-
-**$** `npm install -g generator-studio-app`
-
-Then generate your new app:
-
-**$** `cd /path/to/where/you/want/to/write/your/apps`
-
-Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list.
-
-## Composability
+### Composability
 
 > Composability is a way to combine smaller parts to make one large thing.
 > Sort of [like Voltron®][voltron]
 > — [Yeoman docs][yeoman-docs]
 
-### Install
+#### Install
 **$** `npm install --save generator-studio-app`
 
-### Compose
+#### Compose
 
 ```js
 this.composeWith(require.resolve('generator-studio-app')/*, options */)
@@ -70,6 +59,21 @@ this.composeWith(require.resolve('generator-studio-app')/*, options */)
     email: 'my@email.tld',
 }
 ```
+
+## 🏗 Usage
+
+First, install [Yeoman][yeoman] and generator-studio-app using
+[npm][npm] (we assume you have pre-installed [node.js][nodejs]).
+
+**$** `npm install -g yo`
+
+**$** `npm install -g generator-studio-app`
+
+Then generate your new app:
+
+**$** `cd /path/to/where/you/want/to/write/your/apps`
+
+Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list.
 
 ## License
 
