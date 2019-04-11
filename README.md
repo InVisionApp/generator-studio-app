@@ -77,7 +77,7 @@ Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list
 
 ## License
 
-MIT © [InVision, Inc.][invision-studio]
+MIT © [InVisionApp, Inc.][invision-studio]
 
 [codecov-badge]:        https://codecov.io/gh/InVisionApp/generator-studio-app/branch/master/graph/badge.svg?token=I9IGBzprlC
 [codecov]:              https://codecov.io/gh/InVisionApp/generator-studio-app
