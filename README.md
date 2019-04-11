@@ -17,6 +17,7 @@
 * [✨ Features](#-features)
 * [📌 Requirements](#-requirements)
 * [🏗 Usage](#-usage)
+* [📣 Feedback](#-feedback)
 <!-- tocstop -->
 
 ## 🗒 Description
@@ -74,6 +75,10 @@ Then generate your new app:
 **$** `cd /path/to/where/you/want/to/write/your/apps`
 
 Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list.
+
+# 📣 Feedback
+
+Please share any suggestions or feedback with us through [this form](https://airtable.com/shrgdPQf8uMKWjQPp).
 
 ## License
 
