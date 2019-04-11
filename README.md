@@ -11,6 +11,14 @@
 
 > Yeoman generator for InVision Studio Apps
 
+<!-- toc -->
+* [🗒 Description](#-description)
+<!-- tocstop -->
+
+## 🗒 Description
+
+This is a generator for making Studio apps using Node.js. This framework was built using Yeoman.
+
 ## Installation
 
 First, install [Yeoman][yeoman] and generator-studio-app using
