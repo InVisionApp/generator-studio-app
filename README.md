@@ -26,7 +26,7 @@ This is a generator for making Studio apps using Node.js. This framework was bui
 
 # 🚀 Getting Started Tutorial
 
-The [Getting Started Tutorial](https://github.com/InVisionApp/developer-portal/tree/master/studio/generator/introduction.md) is a step-by-step guide to introduce you to the Studio App Generator. If you have not developed apps for Studio before, this tutorial is a great place to get started.
+A step-by-step guide to introduce you to the Studio App Generator is in the works. If you have not developed apps for Studio before, this tutorial will be a great place to get started.
 
 # 📌 Requirements
 
