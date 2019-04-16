@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [unreleased] - _date_
+### Added
+- _add features here_
+
+### Changed
+- _add changes here_
+
+## [1.0.0] - 2019-04-16
 ### Added
 - Tagname and homepage inputs.
 - Documentation for uploading the app to the app store.
