@@ -1,6 +1,6 @@
 <img align="right" width="256" height="256" src="https://user-images.githubusercontent.com/1903876/54630167-7699ef80-4a36-11e9-9dfb-37eecc5ae69d.png">
 
-# generator-studio-app
+# Studio App Generator: quickly scaffold Studio apps
 
 [![Version][npm-version-shield]][npm-our-package]
 [![Travis Build Status][travis-badge]][travis]
@@ -11,31 +11,39 @@
 
 > Yeoman generator for InVision Studio Apps
 
-## Installation
+<!-- toc -->
+* [🗒 Description](#-description)
+* [🚀 Getting Started Tutorial](#-getting-started-tutorial)
+* [✨ Features](#-features)
+* [📌 Requirements](#-requirements)
+* [🏗 Usage](#-usage)
+* [📣 Feedback](#-feedback)
+<!-- tocstop -->
 
-First, install [Yeoman][yeoman] and generator-studio-app using
-[npm][npm] (we assume you have pre-installed [node.js][nodejs]).
+## 🗒 Description
 
-**$** `npm install -g yo`
+This is a generator for making Studio apps using Node.js. This framework was built using Yeoman.
 
-**$** `npm install -g generator-studio-app`
+# 🚀 Getting Started Tutorial
 
-Then generate your new app:
+A step-by-step guide to introduce you to the Studio App Generator is in the works. If you have not developed apps for Studio before, this tutorial will be a great place to get started.
 
-**$** `cd /path/to/where/you/want/to/write/your/apps`
+# 📌 Requirements
 
-Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list.
+Only Node.js 10+ and `yeoman-generator` 3+ is supported. Node.js 10 will reach end-of-life April 2021. After that point, we will continue to support the current LTS version of Node.js.
 
-## Composability
+## ✨ Features
+
+### Composability
 
 > Composability is a way to combine smaller parts to make one large thing.
 > Sort of [like Voltron®][voltron]
 > — [Yeoman docs][yeoman-docs]
 
-### Install
+#### Install
 **$** `npm install --save generator-studio-app`
 
-### Compose
+#### Compose
 
 ```js
 this.composeWith(require.resolve('generator-studio-app')/*, options */)
@@ -53,9 +61,28 @@ this.composeWith(require.resolve('generator-studio-app')/*, options */)
 }
 ```
 
+## 🏗 Usage
+
+First, install [Yeoman][yeoman] and generator-studio-app using
+[npm][npm] (we assume you have pre-installed [node.js][nodejs]).
+
+**$** `npm install -g yo`
+
+**$** `npm install -g generator-studio-app`
+
+Then generate your new app:
+
+**$** `cd /path/to/where/you/want/to/write/your/apps`
+
+Run **$** `yo`, and select the `Studio App` option in the 'Run a generator' list.
+
+# 📣 Feedback
+
+Please share any suggestions or feedback with us through [this form](https://airtable.com/shrgdPQf8uMKWjQPp).
+
 ## License
 
-MIT © [InVision, Inc.][invision-studio]
+MIT © [InVisionApp, Inc.][invision-studio]
 
 [codecov-badge]:        https://codecov.io/gh/InVisionApp/generator-studio-app/branch/master/graph/badge.svg?token=I9IGBzprlC
 [codecov]:              https://codecov.io/gh/InVisionApp/generator-studio-app
