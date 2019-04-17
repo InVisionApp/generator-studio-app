@@ -96,7 +96,7 @@ MIT © [InVisionApp, Inc.][invision-studio]
 [npm-stats]:            http://npm-stat.com/charts.html?package=generator-studio-app&author=&from=&to=
 [npm-version-shield]:   https://img.shields.io/npm/v/generator-studio-app.svg
 [npm]:                  https://www.npmjs.com/
-[travis-badge]:         https://travis-ci.org/InVisionApp/generator-studio-app.svg?branch=master
+[travis-badge]:         https://travis-ci.com/InVisionApp/generator-studio-app.svg?branch=master
 [travis]:               https://travis-ci.com/InVisionApp/generator-studio-app
 [voltron]:              http://25.media.tumblr.com/tumblr_m1zllfCJV21r8gq9go11_250.gif
 [yeoman-docs]:          http://yeoman.io/authoring/composability.html

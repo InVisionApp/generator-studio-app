@@ -6,11 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [unreleased] - _date_
-### Added
-- _add features here_
-
 ### Changed
-- _add changes here_
+- Reordered the publishing steps a bit to make a little more sense.
+- Updated the travis-ci badge since migrating from org to com.
 
 ## [1.0.0] - 2019-04-16
 ### Added
