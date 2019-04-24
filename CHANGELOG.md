@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Reordered the publishing steps a bit to make a little more sense.
 - Updated the travis-ci badge since migrating from org to com.
+- Updated generated app- switched PureComponent to Component, updated deprecated padding prop value, put all uikit components inside App.
 
 ## [1.0.0] - 2019-04-16
 ### Added
