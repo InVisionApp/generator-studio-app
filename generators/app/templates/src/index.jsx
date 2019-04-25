@@ -9,7 +9,7 @@ import {
 
 let count = 0;
 
-class App extends React.PureComponent {
+class App extends React.Component {
   constructor() {
     super();
     this.state = { text: 'Click me!' };
@@ -23,13 +23,15 @@ class App extends React.PureComponent {
   render() {
     const { text } = this.state;
     return (
-      <FlexBox style={{padding: 'small', width: '400px'}}>
-        <Button onClick={this.onClick} text={text} />
-      </FlexBox>
+      <FloatingWindow>
+        <FlexBox style={{padding: '10px', width: '400px'}}>
+          <Button onClick={this.onClick} text={text} />
+        </FlexBox>
+      </FloatingWindow>
     );
   }
 }
 
 studio.core.onWillShow((event) => {
-  event.render(<FloatingWindow><App /></FloatingWindow>);
+  event.render(<App />);
 });
