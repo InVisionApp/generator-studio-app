@@ -39,7 +39,8 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "yeoman-generator": "^3.2.0",
-    "yosay": "^2.0.2"
+    "yosay": "^2.0.2",
+    "snyk": "^1.189.0"
   },
   "jest": {
     "collectCoverage": true,
@@ -50,7 +51,9 @@
     "prepublishOnly": "npm audit --audit-level high",
     "pretest": "eslint .",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "lint-staged": {
     "*.js": [
@@ -88,5 +91,6 @@
     "type": "git",
     "url": "https://github.com/InVisionApp/generator-studio-app"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
